@@ -63,18 +63,41 @@ export class BaseService {
           };
           delete query.where;
         }
-        if (query?.page) pagination.page = Number(query?.page);
-        if (query?.per_page)
-          pagination.per_page =
-            Number(query?.per_page) == -1 ? 0 : Number(query?.per_page);
+        // if (query?.page) pagination.page = Number(query?.page);
+        // if (query?.per_page)
+        //   pagination.per_page =
+        //     Number(query?.per_page) == -1 ? 0 : Number(query?.per_page);
 
-        customQuery.skip = pagination.page * pagination.per_page;
-        customQuery.take = pagination.per_page;
+        // customQuery.skip = pagination.page * pagination.per_page;
+        // customQuery.take = pagination.per_page;
+        // delete query?.page;
+        // delete query?.per_page;
+        // delete query?.sort_by;
+        // delete query?.sort_type;
+        // delete query?.total;
+        if (query?.page) pagination.page = Number(query?.page);
+        if (query?.per_page) {
+          pagination.per_page =
+            Number(query?.per_page) === -1 ? 0 : Number(query?.per_page);
+        }
+
+        // Handle per_page = -1 (Fetch all records)
+        if (pagination.per_page === 0) {
+          // No pagination, fetch all records
+          delete customQuery.skip;
+          delete customQuery.take;
+        } else {
+          // Apply pagination
+          customQuery.skip = pagination.page * pagination.per_page;
+          customQuery.take = pagination.per_page;
+        }
+
         delete query?.page;
         delete query?.per_page;
         delete query?.sort_by;
         delete query?.sort_type;
         delete query?.total;
+
         if (params) {
           customQuery.where = {
             ...customQuery.where,
