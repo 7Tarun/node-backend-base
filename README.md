@@ -1,6 +1,6 @@
-# Suggee Backend
+# Node Backend
 
-This is an Suggee Backend.
+This is an Node Backend.
 
 ## Authors
 
@@ -17,7 +17,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd Suggee-Backend
+  cd project-name
 ```
 
 Install dependencies
@@ -29,7 +29,7 @@ Install dependencies
 Start the server dev mode
 
 ```bash
-  npm run Suggee-Backend
+  npm run dev
 ```
 
 Start the server Production
