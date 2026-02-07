@@ -1,5 +1,5 @@
 {
-  "name": "vendx_warehouse",
+  "name": "node-backend-base",
   "version": "0.1.0",
   "description": "",
   "main": "server.js",
